@@ -44,7 +44,7 @@ This is a very specific usecase. But if it works, it works.
 
 Example command:
 
-```python3 ssti-skel.py -t 'https://example.com/path?param='```
+```python3 ssti-skel.py -t 'https://example.com'```
 
 Depending on the response, the `ssti=str(output).split('&#39;')[1].rstrip()` variable will probably have to be changed to suit the response. No clever logic was implemented for this :)
 
