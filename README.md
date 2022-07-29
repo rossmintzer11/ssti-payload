@@ -1,4 +1,4 @@
-SSTI Payload Generator
+SSTI Payload Generator for Post Request
 ======================
 This generator is for a specific type of Java SSTI, inspired by the following [PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#java):
 
