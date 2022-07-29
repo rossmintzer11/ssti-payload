@@ -65,6 +65,7 @@ class Terminal(Cmd):
 		try:
 			response=requests.post(url, data=data)
 			output=response.text
+			#converted to post request to inject payload into the body of the request
 			#The next line is used to parse out the output, this might be clean but it also may need work. Depends on the vuln.
 			
 			# ssti=str(output).split('&#39;')[1].rstrip() 
